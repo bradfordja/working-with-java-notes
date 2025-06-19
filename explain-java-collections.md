@@ -1,8 +1,6 @@
 Types of collections in Java
 
-Act as an export Java Developer,  you can expect interview questions that assess your in-depth understanding of collections types in Java.  Give me a list of all collections data types in Java with common interview code-snippet questions with answers  about working with each collection type.  Give simple explanation and sample uses-case if any or sample code-snippet for each Java collection.
-
-Certainly, Java collections framework provides a variety of data structures for storing and manipulating groups of objects. Below are some common collection types in Java, accompanied by interview questions, explanations, and code snippets:
+Java collections framework provides a variety of data structures for storing and manipulating groups of objects. Below are some common collection types in Java, accompanied by interview questions, explanations, and code snippets:
 
 ---
 
@@ -125,8 +123,6 @@ Certainly, Java collections framework provides a variety of data structures for 
   stack.push(1);
   int popped = stack.pop();
   ```
-
-I hope this comprehensive list helps you prepare for your interviews related to Java Collections.
 
 #Java 
 #CollectionsFramework 

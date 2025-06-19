@@ -1,8 +1,6 @@
 Java Data types
 
-Act as an export Java Developer,  you can expect interview questions that assess your in-depth understanding of Java data types.  Give me a list of all Java data types with common interview code-snippet questions with answers  about working with each Java data type.  Give simple explanation and sample uses-case if any or sample code-snippet for each Java data type.
-
-Certainly! Below is a list of Java data types, along with common interview questions and answers for each:
+Below is a list of Java data types, along with common interview questions and answers for each:
 
 ---
 
@@ -168,8 +166,6 @@ Certainly! Below is a list of Java data types, along with common interview quest
     System.out.println(c);
   }
   ```
-
-I hope this list helps you in your preparation for interviews!
 
 #Java 
 #CoreConcepts 
