@@ -1,0 +1,593 @@
+Below is a copy-ready .md interview prep guide.
+
+Senior Java Interview Prep Guide
+
+Topics Covered
+
+* Java 8+ Features
+* Collections Framework
+* Streams API
+* Concurrency
+* Exception Handling
+* JVM Basics
+* Object-Oriented Programming (OOP)
+* Design Patterns
+
+⸻
+
+1. Java 8+ Features
+
+What changed in Java 8?
+
+Java 8 introduced functional programming concepts.
+
+Key Features:
+
+Lambda Expressions
+Streams API
+Optional
+Method References
+Functional Interfaces
+CompletableFuture
+Default Interface Methods
+Date/Time API
+
+⸻
+
+Lambda Expressions
+
+Before Java 8:
+
+Runnable task = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Running");
+    }
+};
+
+Java 8:
+
+Runnable task = () -> System.out.println("Running");
+
+Use Case
+
+Collections processing
+Event handling
+Async programming
+
+⸻
+
+Method References
+
+customers.forEach(System.out::println);
+
+Equivalent:
+
+customers.forEach(customer -> System.out.println(customer));
+
+⸻
+
+Optional
+
+Avoids NullPointerException.
+
+Optional<Customer> customer =
+        repository.findById(id);
+Customer result =
+        customer.orElseThrow();
+
+⸻
+
+CompletableFuture
+
+Async programming.
+
+CompletableFuture<String> future =
+        CompletableFuture.supplyAsync(
+                () -> "Customer Loaded");
+System.out.println(future.get());
+
+Use Case
+
+Calling multiple microservices simultaneously
+
+⸻
+
+2. Collections Framework
+
+Collection Hierarchy
+
+Collection
+   |
+   +-- List
+   |      |
+   |      +-- ArrayList
+   |      +-- LinkedList
+   |
+   +-- Set
+   |      |
+   |      +-- HashSet
+   |      +-- TreeSet
+   |
+   +-- Queue
+          |
+          +-- PriorityQueue
+
+⸻
+
+ArrayList
+
+List<String> customers =
+        new ArrayList<>();
+customers.add("John");
+
+Characteristics
+
+Ordered
+Allows duplicates
+Fast reads
+Slow middle insertions
+
+⸻
+
+LinkedList
+
+List<String> customers =
+        new LinkedList<>();
+
+Characteristics
+
+Fast insertions
+Slow random access
+
+⸻
+
+HashSet
+
+Set<String> customers =
+        new HashSet<>();
+
+Characteristics
+
+No duplicates
+No guaranteed order
+O(1) lookup
+
+⸻
+
+HashMap
+
+Most common interview question.
+
+Map<Long, Customer> customers =
+        new HashMap<>();
+customers.put(1L, customer);
+
+Characteristics
+
+Key/Value
+Allows null key
+Not thread-safe
+O(1) average lookup
+
+⸻
+
+ConcurrentHashMap
+
+Map<Long, Customer> customers =
+        new ConcurrentHashMap<>();
+
+Characteristics
+
+Thread-safe
+Supports concurrent updates
+
+⸻
+
+3. Streams API
+
+What is a Stream?
+
+Streams process data declaratively.
+
+Traditional:
+
+List<String> results =
+        new ArrayList<>();
+for(String name : names) {
+    if(name.startsWith("J")) {
+        results.add(name);
+    }
+}
+
+Stream:
+
+List<String> results =
+        names.stream()
+             .filter(name -> name.startsWith("J"))
+             .toList();
+
+⸻
+
+Common Operations
+
+Filter
+
+customers.stream()
+         .filter(c -> c.isActive());
+
+⸻
+
+Map
+
+customers.stream()
+         .map(Customer::getName);
+
+⸻
+
+Sorted
+
+customers.stream()
+         .sorted(
+             Comparator.comparing(
+                 Customer::getName));
+
+⸻
+
+Collect
+
+List<String> names =
+        customers.stream()
+                 .map(Customer::getName)
+                 .toList();
+
+⸻
+
+Parallel Streams
+
+customers.parallelStream()
+         .forEach(System.out::println);
+
+Use Case
+
+Large data processing
+CPU-intensive operations
+
+⸻
+
+4. Concurrency
+
+What is Concurrency?
+
+Multiple tasks executing simultaneously.
+
+⸻
+
+Runnable
+
+Thread thread =
+        new Thread(
+            () -> System.out.println("Running"));
+thread.start();
+
+⸻
+
+ExecutorService
+
+Preferred approach.
+
+ExecutorService executor =
+        Executors.newFixedThreadPool(5);
+executor.submit(
+        () -> System.out.println("Task"));
+
+⸻
+
+CompletableFuture
+
+CompletableFuture<Customer> future =
+        CompletableFuture.supplyAsync(
+                () -> loadCustomer());
+
+⸻
+
+Synchronization
+
+public synchronized void increment() {
+    counter++;
+}
+
+⸻
+
+Lock
+
+Lock lock = new ReentrantLock();
+lock.lock();
+try {
+    counter++;
+}
+finally {
+    lock.unlock();
+}
+
+⸻
+
+Common Interview Question
+
+HashMap vs ConcurrentHashMap
+
+HashMap
+    Not Thread Safe
+ConcurrentHashMap
+    Thread Safe
+
+⸻
+
+5. Exception Handling
+
+Checked Exception
+
+Must be handled.
+
+IOException
+SQLException
+
+Example:
+
+try {
+    Files.readString(path);
+}
+catch(IOException ex) {
+    ex.printStackTrace();
+}
+
+⸻
+
+Unchecked Exception
+
+Runtime exceptions.
+
+NullPointerException
+IllegalArgumentException
+IndexOutOfBoundsException
+
+⸻
+
+Custom Exception
+
+public class CustomerNotFoundException
+        extends RuntimeException {
+    public CustomerNotFoundException(
+            String message) {
+        super(message);
+    }
+}
+
+⸻
+
+Global Exception Handler
+
+Spring Boot:
+
+@RestControllerAdvice
+public class GlobalHandler {
+    @ExceptionHandler(
+            CustomerNotFoundException.class)
+    public ResponseEntity<String> handle(
+            CustomerNotFoundException ex) {
+        return ResponseEntity
+                .badRequest()
+                .body(ex.getMessage());
+    }
+}
+
+⸻
+
+6. JVM Basics
+
+JVM Memory Areas
+
+Heap
+Stack
+Metaspace
+Native Memory
+
+⸻
+
+Heap
+
+Stores Objects.
+
+Customer customer =
+        new Customer();
+
+Object lives in Heap.
+
+⸻
+
+Stack
+
+Stores:
+
+Method Calls
+Local Variables
+
+Example:
+
+public void process() {
+    int id = 10;
+}
+
+⸻
+
+Garbage Collection
+
+Removes unused objects.
+
+customer = null;
+
+Eligible for GC.
+
+⸻
+
+Common Interview Question
+
+Stack vs Heap
+
+Stack
+    Local Variables
+    Fast Access
+Heap
+    Objects
+    Shared Memory
+
+⸻
+
+7. Object-Oriented Programming (OOP)
+
+Encapsulation
+
+Hide internal data.
+
+public class Customer {
+    private String name;
+    public String getName() {
+        return name;
+    }
+}
+
+⸻
+
+Inheritance
+
+public class Employee
+        extends Person {
+}
+
+⸻
+
+Polymorphism
+
+Animal animal =
+        new Dog();
+animal.makeSound();
+
+Runtime:
+
+Dog implementation executes
+
+⸻
+
+Abstraction
+
+public interface PaymentService {
+    void process();
+}
+
+Implementation hidden.
+
+⸻
+
+8. Design Patterns
+
+Singleton
+
+One instance only.
+
+public class DatabaseConnection {
+    private static final DatabaseConnection INSTANCE =
+            new DatabaseConnection();
+    private DatabaseConnection() {}
+    public static DatabaseConnection getInstance() {
+        return INSTANCE;
+    }
+}
+
+Use Case
+
+Configuration
+Logging
+Cache Manager
+
+⸻
+
+Factory Pattern
+
+public interface Notification {
+    void send();
+}
+public class EmailNotification
+        implements Notification {
+    public void send() {
+        System.out.println("Email");
+    }
+}
+
+Factory:
+
+public class NotificationFactory {
+    public static Notification create() {
+        return new EmailNotification();
+    }
+}
+
+⸻
+
+Strategy Pattern
+
+public interface PaymentStrategy {
+    void pay();
+}
+public class CreditCardStrategy
+        implements PaymentStrategy {
+    public void pay() {
+        System.out.println("Credit Card");
+    }
+}
+
+Use Case:
+
+Payment methods
+Tax calculations
+Discount engines
+
+⸻
+
+Observer Pattern
+
+Used heavily in:
+
+Spring Events
+Kafka Consumers
+Message Brokers
+
+Example:
+
+ApplicationEventPublisher
+
+⸻
+
+Top 20 Senior Java Interview Questions
+
+1. What are Java 8 Streams?
+2. Difference between map() and flatMap()?
+3. What is Optional?
+4. What is CompletableFuture?
+5. Difference between ArrayList and LinkedList?
+6. Difference between HashSet and TreeSet?
+7. Difference between HashMap and ConcurrentHashMap?
+8. How does HashMap work internally?
+9. What is synchronization?
+10. What is a deadlock?
+11. Difference between checked and unchecked exceptions?
+12. What is garbage collection?
+13. Difference between Heap and Stack?
+14. Explain OOP principles.
+15. What is polymorphism?
+16. What is abstraction?
+17. What is a Singleton?
+18. What is a Factory Pattern?
+19. What is a Strategy Pattern?
+20. Explain how Spring uses Dependency Injection.
+
+This covers about 80–90% of the Java core questions typically asked in senior Spring Boot, JPMC, Capital One, American Express, and banking-sector interviews.
