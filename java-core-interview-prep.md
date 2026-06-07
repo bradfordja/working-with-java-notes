@@ -1,4 +1,5 @@
 # Senior Java Interview Prep Guide
+
 ## Topics Covered
 - Java 8+ Features
 - Collections Framework
@@ -9,9 +10,12 @@
 - Object-Oriented Programming (OOP)
 - Design Patterns
 ---
+
 # 1. Java 8+ Features
+
 ## Overview
 Java 8 introduced functional programming concepts and modernized the language significantly.
+
 ### Key Features
 - Lambda Expressions
 - Streams API
@@ -22,7 +26,9 @@ Java 8 introduced functional programming concepts and modernized the language si
 - Default Interface Methods
 - New Date/Time API
 ---
+
 ## Lambda Expressions
+
 ### Before Java 8
 ```java
 Runnable task = new Runnable() {
@@ -32,34 +38,42 @@ Runnable task = new Runnable() {
     }
 };
 ```
+
 ### Java 8
 ```java
 Runnable task = () -> System.out.println("Running");
 ```
+
 ### Use Cases
 - Collections processing
 - Event handling
 - Asynchronous programming
 ---
+
 ## Method References
+
 ```java
 customers.forEach(System.out::println);
 ```
+
 Equivalent to:
 ```java
 customers.forEach(customer -> System.out.println(customer));
 ```
 ---
+
 ## Optional
+
 Avoids NullPointerException.
+
 ```java
-Optional<Customer> customer =
-        repository.findById(id);
-Customer result =
-        customer.orElseThrow();
+Optional<Customer> customer = repository.findById(id);
+Customer result = customer.orElseThrow();
 ```
 ---
+
 ## CompletableFuture
+
 ```java
 CompletableFuture<String> future =
         CompletableFuture.supplyAsync(
@@ -68,6 +82,7 @@ System.out.println(future.get());
 ```
 ### Use Case
 Calling multiple microservices simultaneously.
+
 ```java
 CompletableFuture<Customer> customerFuture =
         CompletableFuture.supplyAsync(
@@ -80,7 +95,9 @@ CompletableFuture.allOf(
         accountFuture).join();
 ```
 ---
+
 # 2. Collections Framework
+
 ## Collection Hierarchy
 ```text
 Collection
@@ -97,18 +114,22 @@ Collection
     └── PriorityQueue
 ```
 ---
+
 ## ArrayList
+
 ```java
 List<String> customers =
         new ArrayList<>();
 customers.add("John");
 customers.add("Mary");
 ```
+
 ### Characteristics
 - Ordered
 - Allows duplicates
 - Fast reads
 - Slower middle insertions
+
 ### Time Complexity
 | Operation | Complexity |
 |------------|------------|
@@ -117,15 +138,19 @@ customers.add("Mary");
 | insert middle | O(n) |
 | remove middle | O(n) |
 ---
+
 ## LinkedList
+
 ```java
 List<String> customers =
         new LinkedList<>();
 ```
+
 ### Characteristics
 - Fast insertions
 - Slow random access
 - Doubly linked list
+
 ### Time Complexity
 | Operation | Complexity |
 |------------|------------|
@@ -133,30 +158,39 @@ List<String> customers =
 | insert | O(1) |
 | delete | O(1) |
 ---
+
 ## HashMap
+
 ```java
 Map<Long, Customer> customers =
         new HashMap<>();
 customers.put(1L, customer);
 ```
+
 ### Characteristics
 - Key-value storage
 - Allows one null key
 - Not thread-safe
 - O(1) average lookup
 ---
+
 ## ConcurrentHashMap
+
 ```java
 Map<Long, Customer> customers =
         new ConcurrentHashMap<>();
 ```
+
 ### Characteristics
 - Thread-safe
 - Supports concurrent updates
 - Used in multi-threaded applications
 ---
+
 # 3. Streams API
+
 ## What is a Stream?
+
 Streams process collections declaratively.
 Traditional:
 ```java
@@ -168,6 +202,7 @@ for(String name : names) {
     }
 }
 ```
+
 Using Streams:
 ```java
 List<String> results =
@@ -176,13 +211,16 @@ List<String> results =
              .toList();
 ```
 ---
+
 ## Filter
+
 ```java
 customers.stream()
          .filter(Customer::isActive)
          .forEach(System.out::println);
 ```
 ---
+
 ## Map
 ```java
 customers.stream()
@@ -190,6 +228,7 @@ customers.stream()
          .forEach(System.out::println);
 ```
 ---
+
 ## Sorted
 ```java
 customers.stream()
@@ -199,6 +238,7 @@ customers.stream()
          .forEach(System.out::println);
 ```
 ---
+
 ## Collect
 ```java
 List<String> names =
@@ -207,7 +247,9 @@ List<String> names =
                  .toList();
 ```
 ---
+
 ## Find Second Largest Distinct Value
+
 ```java
 int secondLargest =
         Arrays.stream(nums)
@@ -218,14 +260,18 @@ int secondLargest =
               .findFirst()
               .orElseThrow();
 ```
+
 ### Complexity
 ```text
 Time: O(n log n)
 Space: O(n)
 ```
 ---
+
 # 4. Concurrency
+
 ## Runnable
+
 ```java
 Thread thread =
         new Thread(
@@ -233,7 +279,9 @@ Thread thread =
 thread.start();
 ```
 ---
+
 ## ExecutorService
+
 ```java
 ExecutorService executor =
         Executors.newFixedThreadPool(5);
@@ -241,13 +289,16 @@ executor.submit(
         () -> System.out.println("Task"));
 ```
 ---
+
 ## CompletableFuture
+
 ```java
 CompletableFuture<Customer> future =
         CompletableFuture.supplyAsync(
                 () -> loadCustomer());
 ```
 ---
+
 ## Synchronization
 ```java
 public synchronized void increment() {
@@ -255,6 +306,7 @@ public synchronized void increment() {
 }
 ```
 ---
+
 ## Lock
 ```java
 Lock lock = new ReentrantLock();
@@ -267,12 +319,16 @@ finally {
 }
 ```
 ---
+
 # 5. Exception Handling
+
 ## Checked Exceptions
+
 ```java
 IOException
 SQLException
 ```
+
 ```java
 try {
     Files.readString(path);
@@ -282,7 +338,9 @@ catch(IOException ex) {
 }
 ```
 ---
+
 ## Unchecked Exceptions
+
 ```java
 NullPointerException
 IllegalArgumentException

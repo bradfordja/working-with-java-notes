@@ -1,6 +1,4 @@
-Here is a copy-ready .md version.
-
-Java Arrays Class Methods
+# Java Arrays Class Methods
 
 The java.util.Arrays class provides utility methods for working with arrays, such as sorting, searching, comparing, copying, filling, and converting arrays to streams.
 
@@ -8,42 +6,42 @@ import java.util.Arrays;
 
 ⸻
 
-1. Arrays.sort()
+## 1. Arrays.sort()
 
 Sorts an array in ascending order.
-
+```java
 int[] nums = {5, 2, 9, 1};
 Arrays.sort(nums);
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
 
 [1, 2, 5, 9]
 
 ⸻
 
-2. Arrays.parallelSort()
+## 2. Arrays.parallelSort()
 
 Sorts an array using multiple threads. Useful for large arrays.
-
+```java
 int[] nums = {9, 3, 7, 1, 5};
 Arrays.parallelSort(nums);
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
-
+```java
 [1, 3, 5, 7, 9]
-
+```
 ⸻
 
-3. Arrays.binarySearch()
+## 3. Arrays.binarySearch()
 
 Searches for a value in a sorted array.
 
-int[] nums = {1, 3, 5, 7, 9};
+```javaint[] nums = {1, 3, 5, 7, 9};
 int index = Arrays.binarySearch(nums, 7);
 System.out.println(index);
-
+```
 Output:
 
 3
@@ -52,71 +50,74 @@ Important: the array must be sorted first.
 
 ⸻
 
-4. Arrays.toString()
+## 4. Arrays.toString()
 
 Converts an array to a readable string.
 
-int[] nums = {1, 2, 3};
+```javaint[] nums = {1, 2, 3};
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
-
+```java
 [1, 2, 3]
-
+```
 ⸻
 
-5. Arrays.deepToString()
+## 5. Arrays.deepToString()
 
 Converts a multi-dimensional array to a readable string.
 
+```java
 int[][] matrix = {
     {1, 2},
     {3, 4}
 };
 System.out.println(Arrays.deepToString(matrix));
-
+```
 Output:
 
+```java
 [[1, 2], [3, 4]]
-
+```
 ⸻
 
-6. Arrays.equals()
+## 6. Arrays.equals()
 
 Compares two arrays for equal values.
 
+```java
 int[] a = {1, 2, 3};
 int[] b = {1, 2, 3};
 System.out.println(Arrays.equals(a, b));
-
+```
 Output:
 
 true
 
 ⸻
 
-7. Arrays.deepEquals()
+## 7. Arrays.deepEquals()
 
 Compares multi-dimensional arrays.
-
+```java
 int[][] a = {{1, 2}, {3, 4}};
 int[][] b = {{1, 2}, {3, 4}};
 System.out.println(Arrays.deepEquals(a, b));
-
+```
 Output:
 
 true
 
 ⸻
 
-8. Arrays.compare()
+## 8. Arrays.compare()
 
 Compares two arrays lexicographically.
-
+```java
 int[] a = {1, 2, 3};
 int[] b = {1, 2, 4};
 System.out.println(Arrays.compare(a, b));
-
+```
 Output:
 
 -1
@@ -129,70 +130,70 @@ Explanation:
 
 ⸻
 
-9. Arrays.mismatch()
+## 9. Arrays.mismatch()
 
 Finds the first index where two arrays are different.
-
+```java
 int[] a = {1, 2, 3};
 int[] b = {1, 2, 4};
 int index = Arrays.mismatch(a, b);
 System.out.println(index);
-
+```
 Output:
 
 2
 
 ⸻
 
-10. Arrays.fill()
+## 10. Arrays.fill()
 
 Fills an array with the same value.
-
+```java
 int[] nums = new int[5];
 Arrays.fill(nums, 100);
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
-
+```java
 [100, 100, 100, 100, 100]
-
+```
 ⸻
 
-11. Arrays.copyOf()
+## 11. Arrays.copyOf()
 
 Copies an array to a new array.
-
+```java
 int[] original = {1, 2, 3};
 int[] copy = Arrays.copyOf(original, original.length);
 System.out.println(Arrays.toString(copy));
-
+```
 Output:
 
 [1, 2, 3]
 
 You can also increase the size:
-
+```java
 int[] bigger = Arrays.copyOf(original, 5);
 System.out.println(Arrays.toString(bigger));
-
+```
 Output:
-
+```java
 [1, 2, 3, 0, 0]
-
+```
 ⸻
 
-12. Arrays.copyOfRange()
+## 12. Arrays.copyOfRange()
 
 Copies part of an array.
-
+```java
 int[] nums = {10, 20, 30, 40, 50};
 int[] result = Arrays.copyOfRange(nums, 1, 4);
 System.out.println(Arrays.toString(result));
-
+```
 Output:
-
+```java
 [20, 30, 40]
-
+```
 Note:
 
 // Start index is included
@@ -200,18 +201,18 @@ Note:
 
 ⸻
 
-13. Arrays.asList()
+## 13. Arrays.asList()
 
 Converts an array to a fixed-size List.
-
+```java
 String[] names = {"John", "Mary", "Alex"};
 List<String> list = Arrays.asList(names);
 System.out.println(list);
-
+```
 Output:
-
+```java
 [John, Mary, Alex]
-
+```
 Important:
 
 // You cannot add or remove items from this list
@@ -219,57 +220,57 @@ Important:
 
 ⸻
 
-14. Arrays.stream()
+## 14. Arrays.stream()
 
 Converts an array into a Stream.
-
+```java
 int[] nums = {10, 20, 30};
 int sum = Arrays.stream(nums)
         .sum();
 System.out.println(sum);
-
+```
 Output:
 
 60
 
 ⸻
 
-15. Arrays.setAll()
+## 15. Arrays.setAll()
 
 Sets array values using a lambda expression.
-
+```java
 int[] nums = new int[5];
 Arrays.setAll(nums, i -> i * 10);
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
-
+```java
 [0, 10, 20, 30, 40]
-
+```
 ⸻
 
-16. Arrays.parallelSetAll()
+## 16. Arrays.parallelSetAll()
 
 Sets array values in parallel using a lambda expression.
-
+```java
 int[] nums = new int[5];
 Arrays.parallelSetAll(nums, i -> i * 2);
 System.out.println(Arrays.toString(nums));
-
+```
 Output:
-
+```java
 [0, 2, 4, 6, 8]
-
+```
 ⸻
 
-17. Arrays.spliterator()
+## 17. Arrays.spliterator()
 
 Creates a Spliterator for traversing array elements.
-
+```java
 String[] names = {"John", "Mary", "Alex"};
 Arrays.spliterator(names)
         .forEachRemaining(System.out::println);
-
+```
 Output:
 
 John
@@ -278,41 +279,41 @@ Alex
 
 ⸻
 
-18. Arrays.hashCode()
+## 18. Arrays.hashCode()
 
 Generates a hash code for an array.
-
+```java
 int[] nums = {1, 2, 3};
 System.out.println(Arrays.hashCode(nums));
-
+```
 Use case:
 
 // Useful when arrays are used in hashing logic
 
 ⸻
 
-19. Arrays.deepHashCode()
+## 19. Arrays.deepHashCode()
 
 Generates a hash code for multi-dimensional arrays.
-
+```java
 int[][] matrix = {
     {1, 2},
     {3, 4}
 };
 System.out.println(Arrays.deepHashCode(matrix));
-
+```
 ⸻
 
 Common Stream Examples with Arrays.stream()
 
 Find Maximum
-
+```java
 int[] nums = {10, 5, 20, 8};
 int max = Arrays.stream(nums)
         .max()
         .orElseThrow();
 System.out.println(max);
-
+```
 Output:
 
 20
@@ -320,13 +321,13 @@ Output:
 ⸻
 
 Find Minimum
-
+```java
 int[] nums = {10, 5, 20, 8};
 int min = Arrays.stream(nums)
         .min()
         .orElseThrow();
 System.out.println(min);
-
+```
 Output:
 
 5
@@ -334,13 +335,13 @@ Output:
 ⸻
 
 Calculate Average
-
+```java
 int[] nums = {10, 20, 30};
 double avg = Arrays.stream(nums)
         .average()
         .orElseThrow();
 System.out.println(avg);
-
+```
 Output:
 
 20.0
@@ -348,12 +349,12 @@ Output:
 ⸻
 
 Remove Duplicates
-
+```java
 int[] nums = {1, 2, 2, 3, 3, 4};
 Arrays.stream(nums)
         .distinct()
         .forEach(System.out::println);
-
+```
 Output:
 
 1
@@ -364,12 +365,12 @@ Output:
 ⸻
 
 Filter Even Numbers
-
+```java
 int[] nums = {1, 2, 3, 4, 5, 6};
 Arrays.stream(nums)
         .filter(n -> n % 2 == 0)
         .forEach(System.out::println);
-
+```
 Output:
 
 2
@@ -379,12 +380,12 @@ Output:
 ⸻
 
 Map Values
-
+```java
 int[] nums = {1, 2, 3};
 Arrays.stream(nums)
         .map(n -> n * n)
         .forEach(System.out::println);
-
+```
 Output:
 
 1
@@ -396,7 +397,7 @@ Output:
 Senior Interview Example
 
 Find Second Largest Distinct Number
-
+```java
 import java.util.Arrays;
 public class Main {
     public static int findSecondLargest(int[] nums) {
@@ -415,7 +416,7 @@ public class Main {
         System.out.println(findSecondLargest(nums));
     }
 }
-
+```
 Output:
 
 19
@@ -423,7 +424,7 @@ Output:
 ⸻
 
 Senior Notes
-
+```java
 // Arrays.sort() is simple and common.
 // Arrays.parallelSort() may help with very large arrays.
 // Arrays.binarySearch() requires sorted input.
@@ -432,11 +433,11 @@ Senior Notes
 // Arrays.stream() is common in modern Java interviews.
 // Arrays.copyOf() is used when resizing arrays.
 // Arrays.asList() creates a fixed-size list backed by the array.
-
+```
 ⸻
 
 Most Common Methods to Know for Interviews
-
+```java
 Arrays.sort()
 Arrays.binarySearch()
 Arrays.toString()
@@ -448,3 +449,4 @@ Arrays.asList()
 Arrays.stream()
 Arrays.deepToString()
 Arrays.deepEquals()
+```

@@ -1,4 +1,7 @@
+# Lambda Expressions
+
 ## 🧱 lambda expressions - Java 8, method references of lambda expressions
+
 In Java 8, method references are a shorthand notation of lambda expressions used to refer to methods directly by their names. They improve readability and conciseness when a lambda expression simply calls an existing method.
 
 ⸻
@@ -28,6 +31,7 @@ Type	Syntax	Description	Example
 ### ✅ Examples for Each Type
 
 🔹 1. Static Method Reference
+
 ```java
 import java.util.function.BiFunction;
 
@@ -46,6 +50,7 @@ public class Demo {
 ⸻
 
 🔹 2. Instance Method Reference (particular object)
+
 ```java
 import java.util.function.Consumer;
 
@@ -60,6 +65,7 @@ public class Demo {
 ⸻
 
 🔹 3. Instance Method Reference (of arbitrary object)
+
 ```java
 import java.util.Arrays;
 import java.util.List;
@@ -78,6 +84,7 @@ public class Demo {
 ⸻
 
 🔹 4. Constructor Reference
+
 ```java
 import java.util.function.Supplier;
 
@@ -98,6 +105,7 @@ public class Demo {
 ⸻
 
 ### ✅ Real-World Use Case: Sorting a List Using Method Reference
+
 ```java
 import java.util.Arrays;
 import java.util.List;

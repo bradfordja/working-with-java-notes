@@ -1,24 +1,23 @@
-Below is a copy-ready .md document.
-
-Java 21 New Features — Interview Prep
+# Java 21 New Features — Interview Prep
 
 Java 21 is a Long-Term Support (LTS) release that introduces major improvements in concurrency, pattern matching, collections, and JVM performance. These features are especially important for modern Spring Boot, microservices, and cloud-native applications.
 
 ⸻
 
-1. Virtual Threads (Final Feature)
+## 1. Virtual Threads (Final Feature)
 
-Description
+### Description
 
 Virtual Threads are lightweight threads managed by the JVM instead of the operating system. They allow applications to handle thousands or even millions of concurrent tasks with minimal resource usage.
 
-Traditional Thread
+### Traditional Thread
 
 ExecutorService executor =
     Executors.newFixedThreadPool(100);
 
-Java 21 Virtual Thread
+### Java 21 Virtual Thread
 
+```java
 try (var executor =
          Executors.newVirtualThreadPerTaskExecutor()) {
     executor.submit(() -> {
@@ -27,8 +26,9 @@ try (var executor =
         );
     });
 }
+```
 
-Use Cases
+### Use Cases
 
 * REST APIs
 * Spring Boot Microservices
@@ -36,20 +36,20 @@ Use Cases
 * Message processing
 * High-concurrency applications
 
-Interview Tip
+### Interview Tip
 
 Virtual Threads are part of Project Loom and solve the “thread-per-request” scalability problem.
 
 ⸻
 
-2. Pattern Matching for switch (Final Feature)
+## 2. Pattern Matching for switch (Final Feature)
 
-Description
+### Description
 
 Allows switch statements to work with object types instead of only primitive values and enums.
 
-Example
-
+### Example
+```java
 public String format(Object obj) {
     return switch (obj) {
         case Integer i ->
@@ -62,34 +62,36 @@ public String format(Object obj) {
             "Unknown";
     };
 }
+```
 
-Use Cases
+### Use Cases
 
 * API request processing
 * Event routing
 * Command handlers
 
-Interview Tip
+### Interview Tip
 
 Eliminates long chains of instanceof checks.
 
 ⸻
 
-3. Record Patterns (Final Feature)
+## 3. Record Patterns (Final Feature)
 
-Description
+### Description
 
 Allows extracting values directly from Record objects.
 
 Record Definition
-
+```java
 record Person(
     String name,
     int age
 ) {}
+```
 
-Example
-
+### Example
+```java
 Object obj =
     new Person("Julio", 56);
 if (obj instanceof Person(
@@ -99,8 +101,9 @@ if (obj instanceof Person(
     System.out.println(name);
     System.out.println(age);
 }
+```
 
-Use Cases
+### Use Cases
 
 * DTO processing
 * API responses
@@ -108,14 +111,15 @@ Use Cases
 
 ⸻
 
-4. Sequenced Collections (Final Feature)
+## 4. Sequenced Collections (Final Feature)
 
-Description
+### Description
 
 Provides a standard API for ordered collections.
 
-Example
+### Example
 
+```java
 List<String> names =
     new ArrayList<>();
 names.add("Alice");
@@ -126,7 +130,7 @@ System.out.println(
 System.out.println(
     names.getLast()
 );
-
+```
 New Methods
 
 getFirst()
@@ -137,7 +141,7 @@ removeFirst()
 removeLast()
 reversed()
 
-Use Cases
+### Use Cases
 
 * Queues
 * Audit logs
@@ -146,25 +150,27 @@ Use Cases
 
 ⸻
 
-5. String Templates (Preview)
+## 5. String Templates (Preview)
 
-Description
+### Description
 
 Provides built-in string interpolation.
 
-Traditional Java
-
+### Traditional Java
+```java
 String name = "Julio";
 String message =
     "Hello " + name;
+```
 
-Java 21
-
+### Java 21
+```java
 String name = "Julio";
 String message =
     STR."Hello \{name}";
+```
 
-Use Cases
+### Use Cases
 
 * Logging
 * SQL generation
@@ -173,14 +179,15 @@ Use Cases
 
 ⸻
 
-6. Unnamed Variables and Patterns (Preview)
+## 6. Unnamed Variables and Patterns (Preview)
 
-Description
+### Description
 
 Allows ignored variables to be represented using _.
 
-Example
+### Example
 
+```java
 try {
     process();
 }
@@ -189,8 +196,9 @@ catch (Exception _) {
         "Error occurred"
     );
 }
+```
 
-Use Cases
+### Use Cases
 
 * Exception handling
 * Pattern matching
@@ -198,14 +206,14 @@ Use Cases
 
 ⸻
 
-7. Unnamed Classes and Instance Main Methods (Preview)
+## 7. Unnamed Classes and Instance Main Methods (Preview)
 
-Description
+### Description
 
 Simplifies small Java programs.
 
-Traditional Java
-
+### Traditional Java
+```java
 public class Main {
     public static void main(
         String[] args
@@ -215,16 +223,18 @@ public class Main {
         );
     }
 }
+```
 
 Java 21
-
+```java
 void main() {
     System.out.println(
         "Hello World"
     );
 }
+```
 
-Use Cases
+### Use Cases
 
 * Learning Java
 * Scripts
@@ -232,14 +242,15 @@ Use Cases
 
 ⸻
 
-8. Scoped Values (Preview)
+## 8. Scoped Values (Preview)
 
-Description
+### Description
 
 A safer replacement for ThreadLocal.
 
-Example
+### Example
 
+```java
 static final ScopedValue<String>
     USER =
         ScopedValue.newInstance();
@@ -251,28 +262,30 @@ ScopedValue.where(
         USER.get()
     );
 });
+```
 
-Use Cases
+### Use Cases
 
 * User Context
 * Security Context
 * Correlation IDs
 * Request Tracking
 
-Interview Tip
+### Interview Tip
 
 Scoped Values work particularly well with Virtual Threads.
 
 ⸻
 
-9. Structured Concurrency (Preview)
+## 9. Structured Concurrency (Preview)
 
-Description
+### Description
 
 Treats multiple concurrent tasks as a single unit of work.
 
-Example
+### Example
 
+```java
 try (
     var scope =
         new StructuredTaskScope
@@ -295,33 +308,34 @@ try (
         orders.get()
     );
 }
+```
 
-Use Cases
+### Use Cases
 
 * Aggregating multiple APIs
 * Dashboard applications
 * Microservice orchestration
 
-Interview Tip
+### Interview Tip
 
 Structured Concurrency makes parallel programming easier and safer.
 
 ⸻
 
-10. Generational ZGC
+## 10. Generational ZGC
 
-Description
+### Description
 
 Improves Java’s low-latency garbage collector by separating objects into generations.
 
-Benefits
+### Benefits
 
 * Faster garbage collection
 * Better throughput
 * Reduced memory overhead
 * Lower pause times
 
-Use Cases
+### Use Cases
 
 * Trading platforms
 * Real-time analytics
@@ -330,49 +344,51 @@ Use Cases
 
 ⸻
 
-11. Key Encapsulation Mechanism (KEM) API
+## 11. Key Encapsulation Mechanism (KEM) API
 
-Description
+### Description
 
 Introduces a standard API for cryptographic key exchange.
 
-Example
+### Example
 
 // Used internally by
 // security frameworks
 // and encryption libraries
 
-Use Cases
+### Use Cases
 
 * Secure communications
 * TLS implementations
 * Encryption systems
 
-Interview Tip
+### Interview Tip
 
 KEM helps Java prepare for modern and future cryptographic algorithms.
 
 ⸻
 
-12. Foreign Function & Memory API (Third Preview)
+## 12. Foreign Function & Memory API (Third Preview)
 
-Description
+### Description
 
 Provides a safer and faster replacement for JNI (Java Native Interface).
 
-Example
+### Example
 
+```java
 MemorySegment segment =
     Arena.ofAuto()
          .allocate(100);
+```
 
-Use Cases
+### Use Cases
 
 * Native libraries
 * C/C++ integrations
 * High-performance systems
 
-Benefits
+### Benefits
 
 * Better performance
 * Safer memory management
@@ -380,9 +396,9 @@ Benefits
 
 ⸻
 
-Top Java 21 Interview Questions
+### Top Java 21 Interview Questions
 
-Q1. What is the most important Java 21 feature?
+## Q1. What is the most important Java 21 feature?
 
 Answer:
 
@@ -390,7 +406,7 @@ Virtual Threads because they dramatically improve scalability for server-side ap
 
 ⸻
 
-Q2. What project introduced Virtual Threads?
+## Q2. What project introduced Virtual Threads?
 
 Answer:
 
@@ -398,7 +414,7 @@ Project Loom.
 
 ⸻
 
-Q3. What is Structured Concurrency?
+## Q3. What is Structured Concurrency?
 
 Answer:
 
@@ -406,7 +422,7 @@ A programming model that treats multiple concurrent tasks as one logical operati
 
 ⸻
 
-Q4. Why use Scoped Values instead of ThreadLocal?
+## Q4. Why use Scoped Values instead of ThreadLocal?
 
 Answer:
 
@@ -419,7 +435,7 @@ Scoped Values are:
 
 ⸻
 
-Q5. What are Record Patterns?
+## Q5. What are Record Patterns?
 
 Answer:
 
@@ -427,7 +443,7 @@ A mechanism for extracting data directly from Records during pattern matching.
 
 ⸻
 
-Q6. What is Pattern Matching for switch?
+## Q6. What is Pattern Matching for switch?
 
 Answer:
 
@@ -435,7 +451,7 @@ Allows switch statements to match based on object types and patterns.
 
 ⸻
 
-Q7. What is the Foreign Function & Memory API?
+## Q7. What is the Foreign Function & Memory API?
 
 Answer:
 
@@ -443,7 +459,7 @@ A modern replacement for JNI that allows Java to interact with native code safel
 
 ⸻
 
-Senior Java Developer Summary
+### Senior Java Developer Summary
 
 The Java 21 features most likely to appear in a Senior Java or Spring Boot interview are:
 
@@ -456,7 +472,7 @@ The Java 21 features most likely to appear in a Senior Java or Spring Boot inter
 7. Generational ZGC
 8. Foreign Function & Memory API
 
-For backend development, focus heavily on:
+### For backend development, focus heavily on:
 
 * Virtual Threads
 * Structured Concurrency

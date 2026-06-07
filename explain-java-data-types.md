@@ -1,4 +1,4 @@
-Java Data types
+# Java Data types
 
 Below is a list of Java data types, along with common interview questions and answers for each:
 
@@ -8,7 +8,6 @@ Below is a list of Java data types, along with common interview questions and an
 
 #### a) byte
 - **Question:** How do you initialize and use a `byte` variable?
-
 - **Explanation:** `byte` is an 8-bit signed data type.
 - **Sample Code:**
 
@@ -20,7 +19,6 @@ Below is a list of Java data types, along with common interview questions and an
 
 #### b) short
 - **Question:** What is the difference between `byte` and `short`?
-
 - **Explanation:** `short` is a 16-bit signed data type. It can hold larger values than `byte`.
 - **Sample Code:**
 
