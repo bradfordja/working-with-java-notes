@@ -271,7 +271,7 @@ CompletableFuture<MovieDetails> result =
                 MovieDetails::new
         );
 ```
-- Interview point:
+- **Interview point**:
 I use parallel asynchronous operations when they are independent. I also define timeouts, failure handling, and appropriate executors rather than relying unconditionally on the common thread pool.
 
 ## 4. Design Patterns
@@ -564,7 +564,7 @@ public class CatalogService {
 }
 ```
 
-- Interview point:
+- **Interview point**:
 I prefer constructor injection because dependencies are explicit, required dependencies can be final, and the class is easier to unit test.
 
 ### REST controller
@@ -638,7 +638,7 @@ public class SubscriptionService {
     }
 }
 ```
-- Senior talking point:
+- **Senior talking point**:
 I keep transaction boundaries in the service layer. I avoid long-running transactions and do not hold a database transaction open while calling a remote service. For cross-service consistency, I use patterns such as Saga and transactional outbox rather than distributed database transactions.
 
 ## 8. Microservices Architecture
@@ -724,7 +724,7 @@ private CompletableFuture<Boolean> fallbackEntitlement(
 }
 ```
 
-- Important senior-level point:
+- **Important senior-level point**:
 I retry only transient failures and only when the operation is safe or idempotent. Retrying every failure can amplify an outage and overload a struggling downstream service.
 
 ## 9. Data Consistency and Event Processing
@@ -758,7 +758,7 @@ public void process(ContentPublishedEvent event) {
 }
 ```
 
-- Interview point:
+- **Interview point**:
 Most message systems provide at-least-once delivery in real production conditions. Therefore, consumers must be designed to safely handle duplicate messages.
 
 ## 10. Microservice Security
@@ -799,7 +799,7 @@ SecurityFilterChain securityFilterChain(
             .build();
 }
 ```
-- Interview answer:
+- **Interview answer**:
 Authentication verifies the caller’s identity, while authorization determines what that caller can do. I validate JWT signature, issuer, audience, expiration, and scopes at the resource server. I do not trust claims from an unverified token.
 
 ## 11. Observability
@@ -848,7 +848,7 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
     }
 }
 ```
-- Interview point:
+- **Interview point**:
 I propagate correlation and trace information through HTTP headers and message metadata so a business transaction can be followed across synchronous and asynchronous services.
 
 ## 12. Testing Strategy
@@ -901,7 +901,7 @@ class MovieRepositoryIntegrationTest {
                     .withPassword("test");
 }
 ```
-### Interview point:
+- **Interview point**:
 Testcontainers gives integration tests a real disposable database or Kafka broker, which is more reliable than assuming that an in-memory substitute behaves exactly like production.
 
 ## 13. Scala Fundamentals
@@ -979,7 +979,7 @@ trait ContentService {
   def findById(id: Long): Option[Movie]
 }
 ```
-* Scala interview answer
+- **Scala interview answer**:
 My primary expertise is Java and Spring Boot, but I am familiar with Scala’s JVM interoperability and its functional programming model. I understand immutable values, case classes, traits, pattern matching, higher-order functions, collections, and Option. My Java streams, lambdas, Optional, and functional-programming experience provides a strong foundation for working productively in Scala.
 
 ## 14. Kubernetes
@@ -1039,7 +1039,7 @@ Liveness versus readiness
 * Readiness: Should this pod currently receive traffic?
 * Startup probe: Has a slow-starting application finished starting?
 
-✅  Senior answer:
+- **Senior answer**:
 A readiness failure removes the pod from service endpoints without necessarily restarting it. A liveness failure causes Kubernetes to restart the container. Poorly designed liveness checks can create restart loops during a temporary downstream outage.
 
 ## 15. Jenkins
@@ -1094,7 +1094,7 @@ pipeline {
     }
 }
 ```
-Pipeline stages to explain:
+**Pipeline stages to explain**:
 1. Checkout source
 2. Compile
 3. Unit tests
@@ -1140,7 +1140,7 @@ Versioned artifact
       ↓
 Deployment pipeline
 ```
-✅ Senior talking point:
+**Senior talking point**:
 The same immutable artifact should move through development, test, staging, and production. I avoid rebuilding the application separately for each environment because that creates inconsistent artifacts.
 
 ## 17. Spinnaker
@@ -1199,7 +1199,7 @@ Metrics and logs validate the release
         ↓
 Promote or roll back
 ```
-✅ Sample answer:
+**Sample answer**:
 
 I would store the code in GitHub and enforce pull-request reviews and required status checks. Jenkins would compile the Java service, run unit and integration tests, perform code-quality and security scanning, build a versioned Docker image, and publish it to an artifact registry.
 
@@ -1240,7 +1240,7 @@ I minimize shared mutable state, prefer immutable objects, use concurrent collec
 ## 20. Behavioral Questions
 Describe a production issue you resolved
 
-Use the STAR structure:
+**Use the STAR structure**:
 * Situation: A high-volume report or API became slow under production load.
 * Task: Identify the bottleneck and restore acceptable performance.
 * Action: Review traces and metrics, examine SQL execution plans, optimize queries, reduce unnecessary data retrieval, introduce caching or asynchronous processing, and add performance tests.
