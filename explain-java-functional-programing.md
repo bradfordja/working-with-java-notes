@@ -1,4 +1,3 @@
-```md
 # Java Functional Programming Interview Prep
 
 ### What Is Functional Programming?
@@ -607,7 +606,4 @@ Output:
 
 ```text
 [ALICE, CHARLIE, DAVID]
-```
-
----
 ```

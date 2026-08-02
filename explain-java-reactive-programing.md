@@ -1,4 +1,3 @@
-```md
 # Java Reactive Programming Interview Prep
 
 ## What Is Reactive Programming?
@@ -720,7 +719,4 @@ Output:
 SPRING
 REACTOR
 WEBFLUX
-```
-
----
 ```
